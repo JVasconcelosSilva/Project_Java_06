@@ -100,11 +100,11 @@
                         <div class="form-group">
                             <h1>Login</h1>
                             <label for="exampleDropdownFormEmail1">Nome de usuário</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" name="login" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleDropdownFormPassword1">Senha</label>
-                            <input type="password" class="form-control" required>
+                            <input type="password" class="form-control" name="pass" required>
                         </div>
                         <div class="form-group">
 
@@ -115,7 +115,7 @@
                                 </label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Logar</button>
+                        <input type="submit" name="formLogin" value="Entrar" class="btn btn-primary"/>
                     </form>
                     <hr>
                     <a class="dropdown-item" href="login.jsp?cadastro=1">Ainda não cadastrado? Cadastre-se aqui</a>
