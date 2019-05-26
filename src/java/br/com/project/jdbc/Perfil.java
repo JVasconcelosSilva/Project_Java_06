@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.project.jdbc;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Jefferson V.
- */
 public class Perfil {
     
     private long id_perfil;
@@ -155,6 +146,37 @@ public class Perfil {
             Object parameters[] = {senhaHash, nome, cpf, endereco, telefone, tipo, login, email};
             
             DB.addPerfil(SQL, parameters);
+    }
+    
+    public static void editPerfil(String nome, String endereco, int telefone, String ds_perfil, long id_perfil) throws Exception{
+            String SQL = "UPDATE PERFIL SET NOME=?, ENDERECO=?, TELEFONE=?, DS_PERFIL=? WHERE ID_PERFIL=?";
+            Object parameters[] = {nome, endereco, telefone, ds_perfil, id_perfil};
+            
+            DB.editPerfil(SQL, parameters);
+    }
+    
+    public static Perfil updatePerfil(long id) throws Exception{
+        String SQL = "SELECT * FROM PERFIL WHERE id_perfil = ?";
+        Object parameters[] = {id};
+        ArrayList<Object[]> list = DB.getQuery(SQL, parameters);
+        
+        if(list.isEmpty()){
+            return null;
+        } else{
+            Object row[] = list.get(0);
+            Perfil p = new Perfil(
+                    (long)row[0], 
+                    (long) row[1] , 
+                    (String)row[2], 
+                    (int)row[3], 
+                    (String)row[4], 
+                    (int)row[5], 
+                    (String)row[6], 
+                    (String)row[7], 
+                    (String)row[8], 
+                    (String)row[9]);
+            return p;
+        }
     }
     
 }

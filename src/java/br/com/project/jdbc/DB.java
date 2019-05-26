@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.project.jdbc;
 
 import java.sql.Connection;
@@ -11,10 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/**
- *
- * @author Jefferson V.
- */
 public class DB {
     
     public static final String DRIVER_CLASS = "org.apache.derby.jdbc.ClientDriver";
@@ -57,7 +48,6 @@ public class DB {
     }
     
     public static void addPerfil(String SQL, Object[] parameters) throws Exception{
-        ArrayList<Object[]> list = new ArrayList<>();
         
         Class.forName(DRIVER_CLASS);
         
@@ -71,6 +61,26 @@ public class DB {
         }
         
         stmt.execute();
+        
+        stmt.close();
+        con.close();
+    }
+    
+    public static void editPerfil(String SQL, Object[] parameters) throws Exception{
+        
+        Class.forName(DRIVER_CLASS);
+        
+        Connection con = DriverManager.getConnection(URL, USER, PASS);
+        
+        PreparedStatement stmt = con.prepareStatement(SQL);
+        
+        for(int i = 0; i < parameters.length; i++){
+            
+            stmt.setObject(i+1, parameters[i]);
+            
+        }
+        
+        stmt.executeUpdate();
         
         stmt.close();
         con.close();

@@ -20,15 +20,15 @@
             errorMessage = "Usuario e/ou senha não encontrado(s)";
         } else {
             session.setAttribute("perfil", p);
-            response.sendRedirect(request.getRequestURI());
+            response.sendRedirect("index.jsp");
         }
 
     }
     if (request.getParameter("formLogoff") != null) {
 
         session.removeAttribute("perfil");
-        response.sendRedirect(request.getRequestURI());
-
+        response.sendRedirect("index.jsp");
+        
     };
 
     if (errorMessage != null) {
@@ -41,8 +41,8 @@
 <%} else {%>
 <%Perfil perfil = (Perfil) session.getAttribute("perfil");%>
 Bem vindo, <%= perfil.getNome()%> [<%= perfil.getTipo_perfil()%>]
+<a href="perfil.jsp">Perfil</a>
 <form>
     <input type="submit" name="formLogoff" value="Sair" class="btn btn-primary">
 </form>
 <%}%>
-

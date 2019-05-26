@@ -37,6 +37,7 @@
                 if (senha == senhad) {
                     try {
                         Perfil.addPerfil(senha, nome, cpf, endereco, telefone, tipo, login, email);
+                        response.sendRedirect("login.jsp");
                     } catch (Exception e) {
                         error = e.getMessage();
         %>
@@ -70,11 +71,11 @@
                 <div class="row">
                     <div class="col">
                         <label for="exampleDropdownFormPassword1">CPF</label>
-                        <input type="text" class="form-control" maxlength="11" name="cpf">
+                        <input type="number" class="form-control" maxlength="11" name="cpf">
                     </div>
                     <div class="col">
                         <label for="exampleDropdownFormPassword1">Telefone</label>
-                        <input type="text" class="form-control" maxlength="11" name="telefone">
+                        <input type="number" class="form-control" maxlength="11" name="telefone">
                     </div>
                 </div>
                 <div class="form-group">
@@ -120,7 +121,7 @@
         </div>
         <%} else {%>
         <div class="container">
-            <form method="post">
+            <form method="post" action="perfil.jsp">
                 <div class="form-group">
                     <h1>Login</h1>
                     <label for="exampleDropdownFormEmail1">Nome de usuário</label>
