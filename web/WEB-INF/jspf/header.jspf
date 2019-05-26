@@ -10,6 +10,7 @@
 
     String errorMessage = null;
     if (request.getParameter("formLogin") != null) {
+        
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
 

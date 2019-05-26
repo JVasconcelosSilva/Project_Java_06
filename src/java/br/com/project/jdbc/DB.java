@@ -56,4 +56,24 @@ public class DB {
         return list;
     }
     
+    public static void addPerfil(String SQL, Object[] parameters) throws Exception{
+        ArrayList<Object[]> list = new ArrayList<>();
+        
+        Class.forName(DRIVER_CLASS);
+        
+        Connection con = DriverManager.getConnection(URL, USER, PASS);
+        
+        PreparedStatement stmt = con.prepareStatement(SQL);
+        for(int i = 0; i < parameters.length; i++){
+            
+            stmt.setObject(i+1, parameters[i]);
+            
+        }
+        
+        stmt.execute();
+        
+        stmt.close();
+        con.close();
+    }
+    
 }

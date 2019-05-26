@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Perfil {
     
     private long id_perfil;
-    private String senha;
+    private long senha;
     private String nome;
     private int cpf;
     private String endereco;
@@ -24,7 +24,7 @@ public class Perfil {
     private String email;
     private String ds_perfil;
 
-    public Perfil(long id_perfil, String senha, String nome, int cpf, String endereco, int telefone, String tipo_perfil, String login, String email, String ds_perfil) {
+    public Perfil(long id_perfil, long senha, String nome, int cpf, String endereco, int telefone, String tipo_perfil, String login, String email, String ds_perfil) {
         this.id_perfil = id_perfil;
         this.senha = senha;
         this.nome = nome;
@@ -49,15 +49,15 @@ public class Perfil {
         return id_perfil;
     }
 
-    public void setId_perfil(int id_perfil) {
+    public void setId_perfil(long id_perfil) {
         this.id_perfil = id_perfil;
     }
 
-    public String getSenha() {
+    public long getSenha() {
         return senha;
     }
 
-    public void setSenha(String senha) {
+    public void setSenha(long senha) {
         this.senha = senha;
     }
 
@@ -128,7 +128,7 @@ public class Perfil {
             Object row[] = list.get(0);
             Perfil p = new Perfil(
                     (long)row[0], 
-                    (String)row[1], 
+                    (long) row[1] , 
                     (String)row[2], 
                     (int)row[3], 
                     (String)row[4], 
@@ -139,6 +139,22 @@ public class Perfil {
                     (String)row[9]);
             return p;
         }
+    }
+    
+    public static void addPerfil(long senhaHash, String nome, int cpf, String endereco, int telefone, String tipo, String login, String email) throws Exception{
+            String SQL = "INSERT INTO PERFIL(SENHA, NOME, CPF, ENDERECO, TELEFONE, TIPO_PERFIL, LOGIN, EMAIL) VALUES(" 
+                    + " ?"
+                    + ", ?"
+                    + ", ?"
+                    + ", ?"
+                    + ", ?"
+                    + ", ?"
+                    + ", ?"
+                    + ", ?"
+                    + ")";
+            Object parameters[] = {senhaHash, nome, cpf, endereco, telefone, tipo, login, email};
+            
+            DB.addPerfil(SQL, parameters);
     }
     
 }
