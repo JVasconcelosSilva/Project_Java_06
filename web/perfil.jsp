@@ -1,3 +1,4 @@
+<%@page import="br.com.project.jdbc.Pedido"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="WEB-INF/jspf/header.jspf"%>
 <!DOCTYPE html>
@@ -26,7 +27,6 @@
         <title>Yunic - Perfil</title>
     </head>
     <body>
-        <br>
         <div class="container-fluid px-5">
             
             <div class="row ">
@@ -67,20 +67,21 @@
                             <a class="dropdown-item" href="perfil.jsp?editarFoto=1">Editar foto de perfil</a>
                         </div>
                     </div>
-                    <br>
+
                 </div>
 
                 <div class="col-10">
                     <div class="row border border-dark rounded-right">
-                        <h3>Pedidos</h3>
-
+                        <%Pedido p = Pedido.getPedido(perfil.getId_perfil());%>
+                        <h3>Pedidos</h3><br>
+                        <h3><%=p.getId_pedido()%></h3>
                     </div>
                 </div>
             </div>
         </div>
 
         <%} else {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("index.jsp");
             }%>
 
     </body>
