@@ -66,6 +66,23 @@ public class DB {
         con.close();
     }
     
+    public static void addObra(String SQL, Object[] parameters) throws Exception{
+        
+        Class.forName(DRIVER_CLASS);
+        
+        Connection con = DriverManager.getConnection(URL, USER, PASS);
+        
+        PreparedStatement stmt = con.prepareStatement(SQL);
+        for(int i = 0; i < parameters.length; i++){
+            
+            stmt.setObject(i+1, parameters[i]);
+            
+        }
+        stmt.execute();
+        stmt.close();
+        con.close();
+    }
+    
     public static void editPerfil(String SQL, Object[] parameters) throws Exception{
         
         Class.forName(DRIVER_CLASS);
@@ -85,5 +102,7 @@ public class DB {
         stmt.close();
         con.close();
     }
+
+    
     
 }

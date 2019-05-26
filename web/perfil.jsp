@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 
 <%
+    if (session.getAttribute("perfil") != null) {
     Perfil perfil = (Perfil) session.getAttribute("perfil");
 
     if (request.getParameter("formEditUser") != null) {
@@ -18,9 +19,7 @@
         session.setAttribute("perfil", p);
         response.sendRedirect("perfil.jsp");
     }
-
 %>
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,7 +27,7 @@
     </head>
     <body>
         <div class="container-fluid px-5">
-            <%if (session.getAttribute("perfil") != null) {%>
+            
             <div class="row ">
                 <div class="col-2 border border-dark rounded-left">
                     <img src="_img/homer.jpg" class="img-thumbnail">
@@ -67,9 +66,7 @@
                             <a class="dropdown-item" href="perfil.jsp?editarFoto=1">Editar foto de perfil</a>
                         </div>
                     </div>
-                    
-                    <%if(request.getParameter("editarFoto").equals("1")){%>
-                    <%}%>
+
                 </div>
 
                 <div class="col-10">
@@ -85,6 +82,6 @@
                 response.sendRedirect("index.jsp");
             }%>
 
-
     </body>
+    <%@include file="WEB-INF/jspf/footer.jspf"%>
 </html>

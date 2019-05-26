@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Yunic - Editar Perfil</title>
     </head>
     <body>
         <%if (session.getAttribute("perfil") != null) {%>
@@ -62,6 +62,7 @@
         <%} else {
                 response.sendRedirect("index.jsp");
             }%>
-        <%@include file="WEB-INF/jspf/footer.jspf"%>
+        
     </body>
+    <%@include file="WEB-INF/jspf/footer.jspf"%>
 </html>
