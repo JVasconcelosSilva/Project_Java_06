@@ -4,6 +4,7 @@
     Author     : a
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="br.com.project.jdbc.Obra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="WEB-INF/jspf/header.jspf"%>
@@ -15,6 +16,7 @@
     </head>
     <body>
         <%if (session.getAttribute("perfil") != null) {%>
+        <%DecimalFormat df = new DecimalFormat(",###.00");%>
         <style>
             #customers {
                 border-collapse: collapse;
@@ -56,7 +58,7 @@
                 <td><%=o.getNm_obra()%></td>
                 <td><%=o.getDs_obra()%></td>
                 <td><%=o.getNm_obra()%></td>
-                <td><%=o.getVl_obra()%></td>
+                <td>R$ <%=df.format(o.getVl_obra())%></td>
                 <td><a href="#" class="btn btn-dark">Comprar</a></td>
             </tr>
             <%}%>
@@ -64,7 +66,7 @@
             </div>
         <br><br><br><br>
         <%} else {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("login.jsp");
             }%>
     </body>
     <%@include file="WEB-INF/jspf/footer.jspf"%>

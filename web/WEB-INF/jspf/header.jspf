@@ -6,42 +6,69 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    li {
+        float: right;
+    }
+
+    li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+        background-color: #111;
+    }
+</style>
 <%
     String errorMessage = null;
     if (request.getParameter("formLogin") != null) {
-
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
-
         Perfil p = Perfil.getPerfil(login, pass);
-
         if (p == null) {
             errorMessage = "Usuario e/ou senha não encontrado(s)";
         } else {
             session.setAttribute("perfil", p);
             response.sendRedirect("index.jsp");
         }
-
     }
     if (request.getParameter("formLogoff") != null) {
-
         session.removeAttribute("perfil");
         response.sendRedirect("index.jsp");
-        
-    };
-
+    }
     if (errorMessage != null) {
 %>
 <p style="color: red"><%=errorMessage%></p>
 <%}%>
+<ul>
+    <li style="float: left;"><a href="index.jsp">Yunic</a></li>
+        <%if (session.getAttribute("perfil") == null) {%>
+    <li style="float:right"><a href="login.jsp">Logar</a></li>
+        <%} else {%>
+        <%Perfil perfil = (Perfil) session.getAttribute("perfil");%>
+    <li style="float:right"><form>
+            <a href="login.jsp?formLogoff=Sair" style="float: right" name="formLogoff">Sair</a>
+        </form></li>
+    <li><a href="perfil.jsp">Perfil</a></li>
+    <li><a style="color: white; background-color: #111;"><%= perfil.getNome()%> [<%= perfil.getTipo_perfil()%>]</a></li>
 
-<%if (session.getAttribute("perfil") == null) {%>
-<a href="login.jsp"><button class="btn btn-primary">Logar</button></a>
-<%} else {%>
-<%Perfil perfil = (Perfil) session.getAttribute("perfil");%>
-Bem vindo, <%= perfil.getNome()%> [<%= perfil.getTipo_perfil()%>]
-<a href="perfil.jsp">Perfil</a>
-<form>
-    <input type="submit" name="formLogoff" value="Sair" class="btn btn-primary">
-</form>
-<%}%>
+
+
+
+
+    <%}%>
+</ul>
+
+

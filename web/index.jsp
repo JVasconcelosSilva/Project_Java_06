@@ -4,6 +4,7 @@
     Author     : Jefferson V.
 --%>
 
+<%@page import="br.com.project.jdbc.Obra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="WEB-INF/jspf/header.jspf"%>
 <!DOCTYPE html>
@@ -42,91 +43,28 @@
             }
         </style>
         <br>
+        
         <div class="container">
+            <center>
+            <a href="obras.jsp" class="btn btn-dark">Lista de Obras</a>
+            <br><br>
+            <h2>Principais Obras</h2>
+            
+            <%for(Obra o: Obra.getList()){%>
             <a href="#"><table id="customers">
                     <tr>
-                        <td><img src="_img/homer.jpg"></td>
+                        <td><img src="<%=o.getDir_obra()%>"></td>
                     </tr>
                     <tr>
-                        <td>Homer</td>
+                        <td><%=o.getNm_obra()%></td>
                     </tr>
                     <tr>
                         <td><a href="#" class="btn btn-dark">Comprar</a></td>
                     </tr>
                 </table>
             </a>
-            <a href="#"><table id="customers">
-                    <tr>
-                        <td><img src="_img/homer.jpg"></td>
-                    </tr>
-                    <tr>
-                        <td>Homer</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="btn btn-dark">Comprar</a></td>
-                    </tr>
-                </table>
-            </a>
-            <a href="#"><table id="customers">
-                    <tr>
-                        <td><img src="_img/homer.jpg"></td>
-                    </tr>
-                    <tr>
-                        <td>Homer</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="btn btn-dark">Comprar</a></td>
-                    </tr>
-                </table>
-            </a>
-            <a href="#"><table id="customers">
-                    <tr>
-                        <td><img src="_img/homer.jpg"></td>
-                    </tr>
-                    <tr>
-                        <td>Homer</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="btn btn-dark">Comprar</a></td>
-                    </tr>
-                </table>
-            </a>
-            <a href="#"><table id="customers">
-                    <tr>
-                        <td><img src="_img/homer.jpg"></td>
-                    </tr>
-                    <tr>
-                        <td>Homer</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="btn btn-dark">Comprar</a></td>
-                    </tr>
-                </table>
-            </a>
-            <a href="#"><table id="customers">
-                    <tr>
-                        <td><img src="_img/homer.jpg"></td>
-                    </tr>
-                    <tr>
-                        <td>Homer</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#" class="btn btn-dark">Comprar</a></td>
-                    </tr>
-                </table>
-            </a>
-            <a href="#"><table id="customers">
-                    <tr>
-                        <td><img src="_img/homer.jpg"></td>
-                    </tr>
-                    <tr>
-                        <td>Homer</td>
-                    </tr>
-                    <tr>
-                        <td><a href="##" class="btn btn-dark">Comprar</a></td>
-                    </tr>
-                </table>
-            </a>
+                    <%}%>
+            </center>
         </div>
 
     </body>

@@ -26,6 +26,7 @@
         <title>Yunic - Perfil</title>
     </head>
     <body>
+        <br>
         <div class="container-fluid px-5">
             
             <div class="row ">
@@ -66,7 +67,7 @@
                             <a class="dropdown-item" href="perfil.jsp?editarFoto=1">Editar foto de perfil</a>
                         </div>
                     </div>
-
+                    <br>
                 </div>
 
                 <div class="col-10">
@@ -79,7 +80,7 @@
         </div>
 
         <%} else {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("login.jsp");
             }%>
 
     </body>

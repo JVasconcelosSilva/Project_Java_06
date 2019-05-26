@@ -19,7 +19,7 @@
                         <h1>Editar Perfil</h1>
 
                         <div class="form-group" action="perfil.jsp">
-                                <label for="exampleDropdownFormPassword1">Numero de perfil</label>
+                            <label for="exampleDropdownFormPassword1">Numero de perfil</label>
                             <input type="text" class="form-control-plaintext border rounded" aria-label="Nome" aria-describedby="nome" readonly value=" <%=perfil.getId_perfil()%>">
                         </div>
 
@@ -43,17 +43,10 @@
                         </div>
                     </div>
                     <br>
-                    <%if (perfil.getDs_perfil() != null) {%>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Descrição</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value="<%=perfil.getDs_perfil()%>" name="descEdit"></textarea>
+                        <input class="form-control" id="exampleFormControlTextarea1" value="<%=perfil.getDs_perfil()%>" name="descEdit">
                     </div>
-                    <%} else {%>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Descrição</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descEdit"></textarea>
-                    </div>
-                    <%}%>
                     <br>
                     <input type="submit" class="btn btn-primary" name="formEditUser" value="Editar">
                 </form>
@@ -62,7 +55,7 @@
         <%} else {
                 response.sendRedirect("index.jsp");
             }%>
-        
+
     </body>
     <%@include file="WEB-INF/jspf/footer.jspf"%>
 </html>

@@ -79,26 +79,7 @@ public class Obra {
     public void setDir_obra(String dir_obra) {
         this.dir_obra = dir_obra;
     }
-    
-//    public static Obra getObras() throws Exception{
-//        String SQL = "SELECT (dir_obra, nm_obra, ds_obra, vl_obra) FROM OBRA";
-//        Object parameters[] = {};
-//        ArrayList<Object[]> list = DB.getQuery(SQL, parameters);
-//        
-//        if(list.isEmpty()){
-//            return null;
-//        } else{
-//            Object row[] = list.get(0);
-//            Obra o = new Obra(
-//                    (long)row[0], 
-//                    (double)row[1], 
-//                    (String)row[2], 
-//                    (String) row[3] , 
-//                    (long)row[4],
-//                    (String)row[5]);
-//            return o;
-//        }
-//    }
+
     public static ArrayList<Obra> getList() throws Exception {
         ArrayList<Obra> list = new ArrayList<>();
         Class.forName("org.apache.derby.jdbc.ClientDriver");
