@@ -10,7 +10,7 @@
 
     String errorMessage = null;
     if (request.getParameter("formLogin") != null) {
-        
+
         String login = request.getParameter("login");
         String pass = request.getParameter("pass");
 
@@ -22,7 +22,7 @@
             session.setAttribute("perfil", p);
             response.sendRedirect(request.getRequestURI());
         }
-        
+
     }
     if (request.getParameter("formLogoff") != null) {
 
@@ -40,8 +40,9 @@
 <a href="login.jsp"><button class="btn btn-primary">Logar</button></a>
 <%} else {%>
 <%Perfil perfil = (Perfil) session.getAttribute("perfil");%>
-Bem vindo, <%= perfil.getNome()%> [<%= perfil.getTipo_perfil() %>]
+Bem vindo, <%= perfil.getNome()%> [<%= perfil.getTipo_perfil()%>]
 <form>
-<input type="submit" name="formLogoff" value="Sair" class="btn btn-primary">
+    <input type="submit" name="formLogoff" value="Sair" class="btn btn-primary">
 </form>
 <%}%>
+
