@@ -7,10 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="WEB-INF/jspf/header.jspf"%>
 <!DOCTYPE html>
-
-
 <html>
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Yunic</title>
@@ -131,15 +128,7 @@
                     <label for="exampleDropdownFormPassword1">Senha</label>
                     <input type="password" class="form-control" name="pass" maxlength="24" required>
                 </div>
-                <div class="form-group">
-
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input">
-                        <label class="form-check-label" for="dropdownCheck">
-                            Remember me
-                        </label>
-                    </div>
-                </div>
+                
                 <input type="submit" name="formLogin" value="Entrar" class="btn btn-primary"/>
             </form>
             <hr>

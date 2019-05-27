@@ -33,7 +33,11 @@
                             <hr>
                             <p>Valor: R$ <%=df.format(ob.getVl_obra())%></p>
                             <hr>
+                            <%if (perfil.getTipo_perfil().equals("comprador")) {%>
                             <a href="pedido.jsp?id_obra=<%=ob.getId_obra()%>" class="btn btn-dark">Comprar</a>
+                            <%} else {%>
+                            <button type="button" class="btn btn-secondary btn-lg" disabled>Comprar</button>
+                            <%}%>
                             <br>
                             <br>
                         </div>

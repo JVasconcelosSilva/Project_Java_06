@@ -28,12 +28,17 @@
                 response.sendRedirect("perfil.jsp");
             }
             if (request.getParameter("formDeleteObra") != null) {
+                try {
+                    long id_obra = Long.parseLong(request.getParameter("id_obra"));
 
-                long id_obra = Long.parseLong(request.getParameter("id_obra"));
-
-                Obra.deleteObra(id_obra);
-                Obra.updateObra(id_obra);
-                response.sendRedirect("perfil.jsp");
+                    Obra.deleteObra(id_obra);
+                    Obra.updateObra(id_obra);
+                    response.sendRedirect("perfil.jsp");
+                } catch (Exception e) {
+        %>
+        <h2>Não é possível excluir, essa obra ja foi vendida</h2>
+        <%
+                }
             }
         %>
         <%for (Obra o : Obra.listObra(id)) {%>

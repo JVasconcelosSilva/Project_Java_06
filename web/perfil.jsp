@@ -76,6 +76,7 @@
                 </div>
 
                 <div class="col-10">
+                    <%if (perfil.getTipo_perfil().equals("comprador")) {%>
                     <div class="row border border-dark rounded-right">
                         <%Pedido p = Pedido.getPedido(perfil.getId_perfil());%>
                         <div class="container">
@@ -100,7 +101,7 @@
                             <br>
                         </div>
                     </div>
-                    <%if (perfil.getTipo_perfil().equals("autor")) {%>
+                    <%} if (perfil.getTipo_perfil().equals("autor")) {%>
                     <div class="row border border-dark rounded-right">
                         <div class="container">
                             <h3>Suas Obras</h3>
