@@ -17,19 +17,19 @@ public class Obra {
     private String nm_obra;
     private String ds_obra;
     private long id_autor;
-    private String dir_obra;
+    private String obra;
 
-    public Obra(){
-        
+    public Obra() {
+
     }
-    
-    public Obra(long id_obra, double vl_obra, String nm_obra, String ds_obra, long id_autor, String dir_obra) {
+
+    public Obra(long id_obra, double vl_obra, String nm_obra, String ds_obra, long id_autor, String obra) {
         this.id_obra = id_obra;
         this.vl_obra = vl_obra;
         this.nm_obra = nm_obra;
         this.ds_obra = ds_obra;
         this.id_autor = id_autor;
-        this.dir_obra = dir_obra;
+        this.obra = obra;
     }
 
     public long getId_obra() {
@@ -71,13 +71,13 @@ public class Obra {
     public void setId_autor(long id_autor) {
         this.id_autor = id_autor;
     }
-    
-    public String getDir_obra() {
-        return dir_obra;
+
+    public String getObra() {
+        return obra;
     }
 
-    public void setDir_obra(String dir_obra) {
-        this.dir_obra = dir_obra;
+    public void setObra(String obra) {
+        this.obra = obra;
     }
 
     public static ArrayList<Obra> getList() throws Exception {
@@ -94,7 +94,8 @@ public class Obra {
             o.setNm_obra(rs.getString("nm_obra"));
             o.setDs_obra(rs.getString("ds_obra"));
             o.setId_autor(rs.getLong("id_autor"));
-            o.setDir_obra(rs.getString("dir_obra"));
+            o.setObra(rs.getString("obra"));
+
             list.add(o);
         }
         rs.close();
@@ -103,16 +104,36 @@ public class Obra {
         return list;
     }
 
-    public static void addObra(double vl_obra, String nm_obra, String ds_obra, long id_autor, String dir_obra) throws Exception{
-            String SQL = "INSERT INTO OBRA (vl_obra, nm_obra, ds_obra, id_autor, dir_obra) VALUES ("
-                    + ", ?"
-                    + ", ?"
-                    + ", ?"
-                    + ", ?"
-                    + ", ?"
-                    + ")";
-            Object parameters[] = {vl_obra, nm_obra, ds_obra, id_autor, dir_obra};
-            DB.addObra(SQL, parameters);
+    public static void addObra(double vl_obra, String nm_obra, String ds_obra, long id_autor, String obra) throws Exception {
+        String SQL = "INSERT INTO OBRA(vl_obra, nm_obra, ds_obra, id_autor, obra) VALUES ("
+                + " ?"
+                + ", ?"
+                + ", ?"
+                + ", ?"
+                + ", ?"
+                + ")";
+        Object parameters[] = {vl_obra, nm_obra, ds_obra, id_autor, obra};
+        DB.addObra(SQL, parameters);
     }
     
+    public static Obra updateObra(long id) throws Exception{
+        String SQL = "SELECT * FROM OBRA WHERE ID_OBRA = ?";
+        Object parameters[] = {id};
+        ArrayList<Object[]> list = DB.getQuery(SQL, parameters);
+        
+        if(list.isEmpty()){
+            return null;
+        } else{
+            Object row[] = list.get(0);
+            Obra o = new Obra(
+                    (long)row[0], 
+                    (double)row[1], 
+                    (String)row[2], 
+                    (String)row[3], 
+                    (long)row[4], 
+                    (String)row[5]);
+            return o;
+        }
+    }
+
 }

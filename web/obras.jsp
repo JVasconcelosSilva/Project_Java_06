@@ -4,11 +4,25 @@
     Author     : a
 --%>
 
-<%@page import="java.text.DecimalFormat"%>
 <%@page import="br.com.project.jdbc.Obra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="WEB-INF/jspf/header.jspf"%>
 <!DOCTYPE html>
+<%
+    Perfil perfil = (Perfil) session.getAttribute("perfil");
+
+    if (request.getParameter("formAddObra") != null) {
+        double vl_obra = Double.parseDouble(request.getParameter("vl_obra"));
+        String nm_obra = request.getParameter("nm_obra");
+        String ds_obra = request.getParameter("ds_obra");
+        String obra = request.getParameter("obra");
+        long id_autor = Long.parseLong(request.getParameter("id_autor"));
+
+        Obra.addObra(vl_obra, nm_obra, ds_obra, id_autor, obra);
+        response.sendRedirect("obras.jsp");
+    }
+
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,7 +30,6 @@
     </head>
     <body>
         <%if (session.getAttribute("perfil") != null) {%>
-        <%DecimalFormat df = new DecimalFormat(",###.00");%>
         <style>
             #customers {
                 border-collapse: collapse;
@@ -43,30 +56,32 @@
         </style>
         <br>
         <div class="container">
-        <table id="customers">
-            <tr>
-                <th>Obra</th>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Autor</th>
-                <th>Valor</th>
-                <th></th>
-            </tr>
-            <%for(Obra o: Obra.getList()){%>
-            <tr>
-                <td><img src="<%=o.getDir_obra()%>"></td>
-                <td><%=o.getNm_obra()%></td>
-                <td><%=o.getDs_obra()%></td>
-                <td><%=o.getNm_obra()%></td>
-                <td>R$ <%=df.format(o.getVl_obra())%></td>
-                <td><a href="#" class="btn btn-dark">Comprar</a></td>
-            </tr>
-            <%}%>
-        </table>
-            </div>
+            <table id="customers">
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>ID Autor</th>
+                    <th>Valor</th>
+                    <th>Obra</th>
+                    <th></th>
+                </tr>
+                <%for (Obra o : Obra.getList()) {%>
+                <tr>
+                    <td><%=o.getId_obra()%></td>
+                    <td><%=o.getNm_obra()%></td>
+                    <td><%=o.getDs_obra()%></td>
+                    <td><%=o.getId_autor()%></td>
+                    <td><%=o.getVl_obra()%></td>
+                    <td><%=o.getObra()%></td>
+                    <td><a href="pedido.jsp?id_obra=<%=o.getId_obra()%>" class="btn btn-dark">Comprar</a></td>
+                </tr>
+                <%}%>
+            </table>
+        </div>
         <br><br><br><br>
         <%} else {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("index.jsp");
             }%>
     </body>
     <%@include file="WEB-INF/jspf/footer.jspf"%>
