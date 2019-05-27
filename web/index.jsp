@@ -53,7 +53,7 @@
             <%for(Obra o: Obra.getList()){%>
             <a href="#"><table id="customers">
                     <tr>
-                        <td><img src="<%=o.getDir_obra()%>"></td>
+                        <td><img src=""></td>
                     </tr>
                     <tr>
                         <td><%=o.getNm_obra()%></td>

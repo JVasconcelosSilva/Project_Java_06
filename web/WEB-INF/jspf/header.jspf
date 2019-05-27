@@ -46,7 +46,7 @@
     }
     if (request.getParameter("formLogoff") != null) {
         session.removeAttribute("perfil");
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("login.jsp");
     }
     if (errorMessage != null) {
 %>
@@ -63,11 +63,6 @@
         </form></li>
     <li><a href="perfil.jsp">Perfil</a></li>
     <li><a style="color: white; background-color: #111;"><%= perfil.getNome()%> [<%= perfil.getTipo_perfil()%>]</a></li>
-
-
-
-
-
     <%}%>
 </ul>
 

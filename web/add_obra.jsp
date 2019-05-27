@@ -12,12 +12,13 @@
         <title>Yunic - Adicionar Obra</title>
     </head>
     <body>
-        <%if (session.getAttribute("perfil") != null) {%>
+        <%if (session.getAttribute("perfil") != null && perfil.getTipo_perfil().equals("autor")) {
+        %>
         <div class="container">
             <div class="col">
                 <form method="post" action="obras.jsp">
                     <div class="form-group">
-                        <h1>Editar Perfil</h1>
+                        <h1>Adicionar Obra</h1>
 
                         <div class="form-group">
                             <label for="exampleDropdownFormPassword1">Numero de perfil</label>
@@ -42,7 +43,7 @@
                     <div class="row">
                         <div class="col">
                             <label for="exampleDropdownFormPassword1">Obra</label>
-                            <input type="text" class="form-control" maxlength="11" name="obra">
+                            <input type="text" class="form-control" maxlength="32000" name="obra">
                         </div>
                     </div>
                     <br>
@@ -53,6 +54,7 @@
         <%} else {
                 response.sendRedirect("index.jsp");
             }%>
-        <%@include file="WEB-INF/jspf/footer.jspf"%>
+
     </body>
+    <%@include file="WEB-INF/jspf/footer.jspf"%>
 </html> 

@@ -103,6 +103,74 @@ public class Obra {
         con.close();
         return list;
     }
+    
+    public static ArrayList<Obra> getListAutor(long id) throws Exception {
+        ArrayList<Obra> list = new ArrayList<>();
+        Class.forName("org.apache.derby.jdbc.ClientDriver");
+        String url = "jdbc:derby://localhost:1527/yunic";
+        Connection con = DriverManager.getConnection(url, "app", "app");
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM OBRA WHERE id_autor = " + id);
+        while (rs.next()) {
+            Obra o = new Obra();
+            o.setId_obra(rs.getLong("id_obra"));
+            o.setVl_obra(rs.getDouble("vl_obra"));
+            o.setNm_obra(rs.getString("nm_obra"));
+            o.setDs_obra(rs.getString("ds_obra"));
+            o.setId_autor(rs.getLong("id_autor"));
+            o.setObra(rs.getString("obra"));
+
+            list.add(o);
+        }
+        rs.close();
+        st.close();
+        con.close();
+        return list;
+    }
+    
+    public static ArrayList<Obra> listObra(long id) throws Exception {
+        ArrayList<Obra> list = new ArrayList<>();
+        Class.forName("org.apache.derby.jdbc.ClientDriver");
+        String url = "jdbc:derby://localhost:1527/yunic";
+        Connection con = DriverManager.getConnection(url, "app", "app");
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery("SELECT * FROM OBRA WHERE id_obra = " + id);
+        while (rs.next()) {
+            Obra o = new Obra();
+            o.setId_obra(rs.getLong("id_obra"));
+            o.setVl_obra(rs.getDouble("vl_obra"));
+            o.setNm_obra(rs.getString("nm_obra"));
+            o.setDs_obra(rs.getString("ds_obra"));
+            o.setId_autor(rs.getLong("id_autor"));
+            o.setObra(rs.getString("obra"));
+
+            list.add(o);
+        }
+        rs.close();
+        st.close();
+        con.close();
+        return list;
+    }
+    
+    public static Obra getObra(long id) throws Exception{
+        String SQL = "SELECT * FROM OBRA WHERE ID_AUTOR = ?";
+        Object parameters[] = {id};
+        ArrayList<Object[]> list = DB.getQuery(SQL, parameters);
+        
+        if(list.isEmpty()){
+            return null;
+        } else{
+            Object row[] = list.get(0);
+            Obra o = new Obra(
+                    (long)row[0], 
+                    (double)row[1], 
+                    (String)row[2], 
+                    (String)row[3], 
+                    (long)row[4], 
+                    (String)row[5]);
+            return o;
+        }
+    }
 
     public static void addObra(double vl_obra, String nm_obra, String ds_obra, long id_autor, String obra) throws Exception {
         String SQL = "INSERT INTO OBRA(vl_obra, nm_obra, ds_obra, id_autor, obra) VALUES ("
@@ -114,6 +182,12 @@ public class Obra {
                 + ")";
         Object parameters[] = {vl_obra, nm_obra, ds_obra, id_autor, obra};
         DB.addObra(SQL, parameters);
+    }
+    
+    public static void editObra(String nome, String ds_obra, double vl_obra, String obra, long id_obra) throws Exception{
+            String SQL = "UPDATE OBRA SET nm_obra='?', ds_obra='?', vl_obra=?, obra='?' WHERE id_obra="+id_obra;
+            Object parameters[] = {nome, ds_obra, vl_obra, obra};
+            DB.editPerfil(SQL, parameters);
     }
     
     public static Obra updateObra(long id) throws Exception{
