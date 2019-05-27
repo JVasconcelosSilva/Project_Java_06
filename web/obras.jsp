@@ -4,6 +4,7 @@
     Author     : a
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="br.com.project.jdbc.Obra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="WEB-INF/jspf/header.jspf"%>
@@ -58,23 +59,20 @@
         <div class="container">
             <table id="customers">
                 <tr>
-                    <th>#</th>
                     <th>Nome</th>
                     <th>Descrição</th>
                     <th>ID Autor</th>
                     <th>Valor</th>
-                    <th>Obra</th>
                     <th></th>
                 </tr>
+                <%DecimalFormat df = new DecimalFormat("#,###.00");%>
                 <%for (Obra o : Obra.getList()) {%>
                 <tr>
-                    <td><%=o.getId_obra()%></td>
                     <td><%=o.getNm_obra()%></td>
                     <td><%=o.getDs_obra()%></td>
                     <td><%=o.getId_autor()%></td>
-                    <td><%=o.getVl_obra()%></td>
-                    <td><%=o.getObra()%></td>
-                    <td><a href="pedido.jsp?id_obra=<%=o.getId_obra()%>" class="btn btn-dark">Comprar</a></td>
+                    <td>R$ <%=df.format(o.getVl_obra())%></td>
+                    <td><a href="detalhe-obra.jsp?id_obra=<%=o.getId_obra()%>" class="btn btn-dark">Detalhes</a></td>
                 </tr>
                 <%}%>
             </table>

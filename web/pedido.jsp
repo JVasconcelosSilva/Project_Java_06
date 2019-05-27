@@ -34,7 +34,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-
         <div class="container">
             <div class="col">
                 <form method="post">
@@ -57,7 +56,7 @@
                             <label for="exampleDropdownFormPassword1">Numero da obra</label>
                             <input type="text" class="form-control-plaintext border rounded" name="id_obra" readonly value="<%=o.getId_obra()%>">
                         </div>
-                        <input type="submit" name="confirmaPedido" value="Confirmar pedido">
+                        <input type="submit" class="btn btn-primary" name="confirmaPedido" value="Confirmar pedido">
                     </div>
                 </form>
             </div>

@@ -4,9 +4,11 @@
     Author     : Jefferson V.
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="br.com.project.jdbc.Obra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="WEB-INF/jspf/header.jspf"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -49,17 +51,21 @@
             <a href="obras.jsp" class="btn btn-dark">Lista de Obras</a>
             <br><br>
             <h2>Principais Obras</h2>
+            <%DecimalFormat df = new DecimalFormat("#,###.00");%>
             
             <%for(Obra o: Obra.getList()){%>
             <a href="#"><table id="customers">
                     <tr>
-                        <td><img src=""></td>
+                        <td><b><%=o.getNm_obra()%></b></td>
                     </tr>
                     <tr>
-                        <td><%=o.getNm_obra()%></td>
+                        <td><%=o.getDs_obra()%></td>
                     </tr>
                     <tr>
-                        <td><a href="#" class="btn btn-dark">Comprar</a></td>
+                        <td>R$ <%=df.format(o.getVl_obra())%></td>
+                    </tr>
+                    <tr>
+                        <td><a href="detalhe-obra.jsp?id_obra=<%=o.getId_obra()%>" class="btn btn-dark">Detalhes</a></td>
                     </tr>
                 </table>
             </a>
