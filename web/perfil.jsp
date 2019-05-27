@@ -21,7 +21,7 @@
             session.setAttribute("perfil", p);
             response.sendRedirect("perfil.jsp");
         }
-        
+
 %>
 <html>
     <head>
@@ -81,8 +81,19 @@
                         <div class="container">
                             <h3>Pedidos</h3>
                             <hr>
-                            <%if (Pedido.getPedido(perfil.getId_perfil()) != null) {%>
-                            <h4><%=p.getId_pedido()%></h4>
+                            <%if (Pedido.getListPedido(perfil.getId_perfil()) != null) {%>
+                            <%for (Pedido pe : Pedido.getListPedido(perfil.getId_perfil())) {%>
+                                <table id="customers">
+                                <tr>
+                                    <td><%=pe.getNm_obra()%></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="excluir-pedido.jsp?id=<%=pe.getId_pedido()%>" class="btn btn-danger">Cancelar pedido</a></td>
+                                </tr>
+                            </table>
+                                <br>
+                            <%}%>
+
                             <%} else {%>
                             <br><h4>Nenhum pedido feito ainda</h4>
                             <%}%>
@@ -120,6 +131,7 @@
 
             </div>
         </div>
+                <br><br><br>
 
         <%} else {
                 response.sendRedirect("index.jsp");
