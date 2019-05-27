@@ -185,8 +185,14 @@ public class Obra {
     }
     
     public static void editObra(String nome, String ds_obra, double vl_obra, String obra, long id_obra) throws Exception{
-            String SQL = "UPDATE OBRA SET nm_obra='?', ds_obra='?', vl_obra=?, obra='?' WHERE id_obra="+id_obra;
-            Object parameters[] = {nome, ds_obra, vl_obra, obra};
+            String SQL = "UPDATE OBRA SET nm_obra=?, ds_obra=?, vl_obra=?, obra=? WHERE id_obra=?";
+            Object parameters[] = {nome, ds_obra, vl_obra, obra, id_obra};
+            DB.editPerfil(SQL, parameters);
+    }
+    
+    public static void deleteObra(long id_obra) throws Exception{
+            String SQL = "DELETE FROM OBRA WHERE id_obra=?";
+            Object parameters[] = {id_obra};
             DB.editPerfil(SQL, parameters);
     }
     
